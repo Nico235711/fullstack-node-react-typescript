@@ -21,6 +21,15 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         {isAvailable ? "Disponible" : "No Disponible"}
       </td>
       <td className="p-3 text-lg text-gray-800 ">
+        <div className="flex gap-3 justify-evenly">
+          <button
+            type="button"
+            className="bg-indigo-600 py-1 px-2 text-lg text-white font-bold rounded-md hover:bg-blue-700 transition-all"
+          >Editar</button>
+          <button
+            type="button"
+            className="bg-red-600 py-1 px-2 text-lg text-white font-bold rounded-md hover:bg-red-700 transition-all">Eliminar</button>
+        </div>
       </td>
     </tr>
   )
