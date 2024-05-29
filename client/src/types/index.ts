@@ -5,7 +5,7 @@ export const DraftProductSchema = object({
   price: number()
 })
 
-const ProductSchema = object({
+export const ProductSchema = object({
   id: number(),
   name: string(),
   price: number(),

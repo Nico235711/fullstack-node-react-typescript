@@ -1,6 +1,16 @@
-import { ActionFunctionArgs, Form, Link, redirect, useActionData } from "react-router-dom"
+import { ActionFunctionArgs, Form, Link, LoaderFunctionArgs, redirect, useActionData, useLoaderData } from "react-router-dom"
 import Error from "../components/Error"
-import { addProduct } from "../services/ProductService"
+import { addProduct, getProductById } from "../services/ProductService"
+import { Product } from "../types"
+
+export async function loader({ params }: LoaderFunctionArgs) {
+  if (params.id !== undefined) {
+    const product = await getProductById(+params.id)
+    if (!product) return redirect("/")
+    return product
+  }
+  
+}
 
 export async function action({ request }: ActionFunctionArgs) {
 
@@ -21,6 +31,7 @@ export async function action({ request }: ActionFunctionArgs) {
 const EditProduct = () => {
 
   const error = useActionData() as string
+  const product = useLoaderData() as Product
 
   return (
     <>
@@ -29,7 +40,7 @@ const EditProduct = () => {
         <Link
           to="/"
           className="bg-blue-800 py-1 px-2 text-lg text-white font-bold rounded-md hover:bg-blue-900 transition-all"
-        >Volver</Link>
+        >Volver a Productos</Link>
       </div>
 
       <Form
@@ -49,6 +60,7 @@ const EditProduct = () => {
             className="mt-2 block w-full p-3 bg-gray-50 border"
             placeholder="Nombre del Producto"
             name="name"
+            defaultValue={product.name}
           />
         </div>
         <div className="mb-4">
@@ -62,6 +74,7 @@ const EditProduct = () => {
             className="mt-2 block w-full p-3 bg-gray-50 border"
             placeholder="Precio Producto. ej. 200, 300"
             name="price"
+            defaultValue={product.price}
           />
         </div>
         <input

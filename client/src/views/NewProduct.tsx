@@ -29,7 +29,7 @@ const NewProduct = () => {
         <Link
           to="/"
           className="bg-blue-800 py-1 px-2 text-lg text-white font-bold rounded-md hover:bg-blue-900 transition-all"
-        >Volver</Link>
+        >Volver a Productos</Link>
       </div>
 
       <Form
