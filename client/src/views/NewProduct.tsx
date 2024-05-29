@@ -1,6 +1,7 @@
-import { Form, Link, useActionData } from "react-router-dom"
+import { ActionFunctionArgs, Form, Link, useActionData } from "react-router-dom"
+import Error from "../components/Error"
 
-export async function action({ request }) {
+export async function action({ request }: ActionFunctionArgs) {
 
   const data = Object.fromEntries(await request.formData())
   let error = ""
@@ -17,9 +18,7 @@ export async function action({ request }) {
 
 const NewProduct = () => {
 
-  const error = useActionData()
-  console.log(error);
-  
+  const error = useActionData() as string
 
   return (
     <>
@@ -35,6 +34,7 @@ const NewProduct = () => {
         className="mt-10"
         method="POST"
       >
+        {error && <Error>{error}</Error>}
 
         <div className="mb-4">
           <label
