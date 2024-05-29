@@ -5,6 +5,7 @@ import router from './router';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './config/swagger';
 import cors, { CorsOptions } from 'cors';
+import morgan from 'morgan';
 
 // Conectar con la DB
 async function connectDB() {
@@ -42,6 +43,7 @@ server.use(cors(corsOptions))
 // leer datos de formularios
 server.use(express.json())
 
+server.use(morgan("dev"))
 server.use("/api/products", router)
 
 // documentación
