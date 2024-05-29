@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { Product } from "../types"
 import { formatCurrency } from "../utils"
 
@@ -8,6 +9,7 @@ type ProductDetailsProps = {
 const ProductDetails = ({ product }: ProductDetailsProps) => {
 
   const isAvailable = product.availability
+  const navigate = useNavigate()
 
   return (
     <tr className="border-b ">
@@ -25,6 +27,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <button
             type="button"
             className="bg-indigo-600 py-1 px-2 text-lg text-white font-bold rounded-md hover:bg-blue-700 transition-all"
+            onClick={() => navigate(`productos/${product.id}/editar`)}
           >Editar</button>
           <button
             type="button"
