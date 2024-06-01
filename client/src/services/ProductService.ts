@@ -59,13 +59,23 @@ export async function getProductById(id: Product["id"]) {
 }
 
 export async function updateProduct(data: ProductData, id: Product["id"]) {
+
+  // Parsea el campo 'price' a un número
+  // const priceAsNumber = parse(number(), data.price);
+
   try {
-      const url = `${import.meta.env.VITE_API_URL}/api/products/`
-      const { data } = await axios(url)
-      const result = safeParse(ProductSchema, data.data)
-      
-      if (result.success) return result.output
-      else throw new Error("Hubo un error...");
+    const result = safeParse(ProductSchema, {
+      id,
+      name: data.name,
+      price: +data.price,
+      availability: Boolean(data.availability)
+    })
+    // console.log(result);
+    
+    if (result.success) {
+      const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`
+      await axios.put(url, result.output)
+    }
 
   } catch (error) {
     console.log(error);
