@@ -4,3 +4,7 @@ export const formatCurrency = (amount: number) => {
     currency: "ARS"
   }).format(amount)
 }
+
+export const toBoolean = (str: string) => {
+  return str.toLowerCase() === "true"
+}
