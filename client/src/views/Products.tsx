@@ -9,6 +9,13 @@ export async function loader() {
   return products
 }
 
+export async function action() {
+
+  console.log("desde action")
+  
+  return null
+}
+
 const Products = () => {
 
   const products = useLoaderData() as Product[]
@@ -32,7 +39,7 @@ const Products = () => {
                     <th className="p-2">Producto</th>
                     <th className="p-2">Precio</th>
                     <th className="p-2">Disponibilidad</th>
-                    <th className="p-2">Acci  ones</th>
+                    <th className="p-2">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
