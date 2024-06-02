@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { createProduct, deleteProduct, getProductById, getProducts, updateProduct } from "./handlers/product"
+import { createProduct, deleteProduct, getProductById, getProducts, updateAvailability, updateProduct } from "./handlers/product"
 import { body, param } from "express-validator"
 import { handleInputErrors } from "./middleware"
 
@@ -183,6 +183,8 @@ router.put("/:id",
   updateProduct
 
 )
+
+router.patch("/:id", updateAvailability)
 
 /**
  * @swagger
