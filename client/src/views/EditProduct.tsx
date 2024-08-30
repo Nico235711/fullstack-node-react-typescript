@@ -10,7 +10,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     if (!product) return redirect("/")
     return product
   }
-
+return {}
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -43,11 +43,11 @@ const EditProduct = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <h2 className="text-4xl font-extrabold text-slate-500">Editar Producto</h2>
         <Link
           to="/"
-          className="bg-blue-800 py-1 px-2 text-lg text-white font-bold rounded-md hover:bg-blue-900 transition-all"
+          className="px-2 py-1 text-lg font-bold text-white transition-all bg-blue-800 rounded-md hover:bg-blue-900"
         >Volver a Productos</Link>
       </div>
 
@@ -68,7 +68,7 @@ const EditProduct = () => {
           >Disponibilidad:</label>
           <select
             id="availability"
-            className="mt-2 block w-full p-3 bg-gray-50"
+            className="block w-full p-3 mt-2 bg-gray-50"
             name="availability"
             defaultValue={product?.availability.toString()}
           >
@@ -80,7 +80,7 @@ const EditProduct = () => {
 
         <input
           type="submit"
-          className="mt-5 w-full bg-indigo-600 p-2 text-white font-bold text-lg cursor-pointer rounded"
+          className="w-full p-2 mt-5 text-lg font-bold text-white bg-indigo-600 rounded cursor-pointer"
           value="Guardar Cambios"
         />
       </Form>
