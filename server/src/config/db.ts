@@ -3,10 +3,10 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const db = new Sequelize(process.env.SUPABASE_DB, process.env.SUPABASE_DB_USERNAME, process.env.SUPABASE_DB_PASSWORD, {
-    host: process.env.SUPABASE_HOST,
+const db = new Sequelize(process.env.DATABASE_URL, {
     dialect: "postgres",
-    models: [__dirname + "/../models/**/*.ts"]
+    models: [__dirname + "/../models/**/*.ts"],
+    logging: false
   }
 )
 
