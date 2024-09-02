@@ -10,7 +10,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
     if (!product) return redirect("/")
     return product
   }
-return {}
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
