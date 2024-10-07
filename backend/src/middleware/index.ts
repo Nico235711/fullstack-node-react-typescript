@@ -4,7 +4,11 @@ import { validationResult } from 'express-validator'
 const errorStatus = 400
 
 export const handleInputErrors = (req: Request, res: Response, next: NextFunction) => {
-  console.log("Desde middleware...");
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    res.status(errorStatus).json({errors: errors.array()})
+    return
+  }
   next()
   
 }
