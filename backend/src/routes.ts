@@ -10,10 +10,7 @@ router.post("/",
   // validación
   body("name")
     .notEmpty().withMessage("El nombre del producto no puede ir vacío"),
-  body("price")
-    .notEmpty().withMessage("El precio del producto no puede ir vacío")
-    .isNumeric().withMessage("Valor del producto no válido")
-    .custom(value => value > 0).withMessage("Precio del producto no válido"),
+
   //   // middleware
   // handleInputErrors,
   createProduct
