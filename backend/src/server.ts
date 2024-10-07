@@ -1,5 +1,5 @@
 import express from 'express'
-import productRouter from './routes'
+import productsRouter from './routes'
 import db from './config/db'
 import colors from 'colors'
 
@@ -21,6 +21,6 @@ const server = express()
 
 // habilito la lectura en formato json
 server.use(express.json())
-server.use("/api/products", productRouter) // .use engloba todos los verbos http
+server.use("/api/products", productsRouter) // .use engloba todos los verbos http
 
 export default server

@@ -5,14 +5,20 @@ import { Column, Table, Model, DataType, Default } from 'sequelize-typescript'
 })
 
 class Product extends Model {
-  @Column(DataType.STRING)
+  @Column({
+    type: DataType.STRING(100)
+  })
   name: string
 
-  @Column(DataType.FLOAT)
+  @Column({
+    type: DataType.FLOAT
+  })
   price: number
 
-  @Default(true)
-  @Column(DataType.BOOLEAN)
+  // @Default(true)
+  @Column({
+    type: DataType.BOOLEAN
+  })
   availability: boolean
 }
 
