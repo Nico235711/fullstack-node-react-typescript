@@ -1,9 +1,7 @@
 import express from 'express'
+import productRouter from './routes'
 
 const server = express()
-// routing
-server.get("/", (req, res) => {
-  res.send("Hola API")
-})
+server.use("/api/products", productRouter) // .use engloba todos los verbos http
 
 export default server
