@@ -18,6 +18,9 @@ async function connectDB() {
 }
 connectDB()
 const server = express()
+
+// habilito la lectura en formato json
+server.use(express.json())
 server.use("/api/products", productRouter) // .use engloba todos los verbos http
 
 export default server
