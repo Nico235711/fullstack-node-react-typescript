@@ -1,5 +1,5 @@
 import { Router } from 'express' // instacia del router para no tener que importar el server
-import { createProduct } from './handlers/product'
+import { createProduct, getAllProducts } from './handlers/product'
 import { body } from 'express-validator'
 import { handleInputErrors } from './middleware'
 
@@ -18,5 +18,7 @@ router.post("/",
   handleInputErrors,
   createProduct
 )
+
+router.get("/", getAllProducts)
 
 export default router
