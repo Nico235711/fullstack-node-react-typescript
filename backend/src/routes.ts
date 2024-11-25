@@ -1,4 +1,4 @@
-import { Router } from 'express' // instacia del router para no tener que importar el server
+import { Router } from 'express' // instancia del router para no tener que importar el server
 import { createProduct, getAllProducts, getProductById, updateAvailability, updateProductById } from './handlers/product'
 import { body, param } from 'express-validator'
 import { handleInputErrors } from './middleware'
@@ -12,8 +12,8 @@ router.post("/",
     .notEmpty().withMessage("El nombre del producto no puede ir vacío"),
   body("price")
     .notEmpty().withMessage("El precio del producto no puede ir vacío")
-    .isNumeric().withMessage("Valor del producto no válido")
-    .custom(value => value > 0).withMessage("Precio del producto no válido"),
+    .isNumeric().withMessage("Precio del producto no válido")
+    .custom(value => value > 0).withMessage("El precio del producto debe ser mayor 0"),
   // middleware
   handleInputErrors,
   createProduct

@@ -8,10 +8,10 @@ async function connectDB() {
   try {
     await db.authenticate()
     db.sync()
-    console.log(colors.magenta("Conección exitosa a la BD"));
+    console.log(colors.green("Conección exitosa a la BD"));
     
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     console.log(colors.red("Hubo un error al conectarse a la BD"));
     
   }
