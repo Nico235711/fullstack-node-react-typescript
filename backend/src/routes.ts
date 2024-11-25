@@ -1,5 +1,5 @@
 import { Router } from 'express' // instancia del router para no tener que importar el server
-import { createProduct, getAllProducts, getProductById, updateAvailability, updateProductById } from './handlers/product'
+import { createProduct, deleteProduct, getAllProducts, getProductById, updateAvailability, updateProductById } from './handlers/product'
 import { body, param } from 'express-validator'
 import { handleInputErrors } from './middleware'
 
@@ -55,7 +55,7 @@ router.delete("/:id",
   param("id")
     .isInt().withMessage("Id no válido"),
   handleInputErrors,
-  getProductById
+  deleteProduct
 )
 
 export default router
