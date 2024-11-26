@@ -25,7 +25,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
     const product = await Product.findAll();
     res.json({ data: product });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
 
   }
 };
@@ -40,11 +40,10 @@ export const getProductById = async (req: Request, res: Response) => {
       res.status(CODE_NOT_FOUND).json({ error: "Producto no encontrado" })
       return
     }
-    await product.destroy()
     res.json({ data: product })
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
 
   }
 };
@@ -64,7 +63,7 @@ export const updateProductById = async (req: Request, res: Response) => {
     res.json({ data: product })
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
 
   }
 };
@@ -86,7 +85,7 @@ export const updateAvailability = async (req: Request, res: Response) => {
     res.json({ data: product })
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
 
   }
 };
@@ -106,7 +105,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
     res.json({ data: product })
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
 
   }
 };
