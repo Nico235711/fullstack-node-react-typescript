@@ -6,7 +6,8 @@
     "start": "nodemon --exec ts-node src/index.ts",
     "test": "jest --detectOpenHandles",
     "test:coverage": "npm run pretest && jest --detectOpenHandles --coverage",
-    "pretest": "ts-node src/data/index.ts --clear"
+    "pretest": "ts-node src/data/index.ts --clear",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "Nicolás Lopez Vidueiros",
