@@ -2,6 +2,8 @@ import express from 'express'
 import productsRouter from './routes'
 import db from './config/db'
 import colors from 'colors'
+import swaggerUi from 'swagger-ui-express'
+import swaggerSpecs from './config/swagger'
 
 // conectar a DB
 export async function connectDB() {
@@ -23,5 +25,6 @@ const server = express()
 // habilito la lectura en formato json
 server.use(express.json())
 server.use("/api/products", productsRouter) // .use engloba todos los verbos http
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs))
 
 export default server
