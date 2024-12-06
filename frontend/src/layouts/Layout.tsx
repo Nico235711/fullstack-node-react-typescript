@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Layout() {
 
@@ -13,6 +15,10 @@ export default function Layout() {
       <main className="max-w-6xl mx-auto mt-10 bg-white shadow p-10">
         <Outlet />
       </main>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+      />
     </>
   )
 }

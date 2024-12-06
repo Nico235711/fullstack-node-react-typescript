@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./layouts/Layout";
-import NewProduct from "./pages/NewProduct";
-import Products from "./pages/Products";
+import NewProduct, { action as newProductAction } from "./pages/NewProduct";
+import Products, { loader as produtsLoader } from "./pages/Products";
 
 export const router = createBrowserRouter([
   {
@@ -11,10 +11,12 @@ export const router = createBrowserRouter([
       {
         index: true, // el index es el path "/"
         element: <Products />,
+        loader: produtsLoader
       },
       {
-        path: "/newProduct",
+        path: "products/new",
         element: <NewProduct />,
+        action: newProductAction
       },
     ],
   }
