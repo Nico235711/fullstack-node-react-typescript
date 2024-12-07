@@ -1,9 +1,20 @@
 import { formatCurrency } from "@/helpers/formatCurrency";
+import { deletProductById } from "@/services/ProductService";
 import { Product } from "@/types";
-import { Link } from "react-router-dom";
+import { ActionFunctionArgs, Form, Link, redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type ProductDetailsProps = {
   product: Product
+}
+
+export async function action({ params }: ActionFunctionArgs) {
+  
+  if (params.id !== undefined) {
+    toast.error("Producto eliminado con exito");
+    await deletProductById(Number(params.id))
+    return redirect("/")
+  }
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
@@ -34,10 +45,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded uppercase transition-all"
           >Editar</button>
         </Link>
-        <button
-          type="button"
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded uppercase transition-all"
-        >Eliminar</button>
+        <Form method="post" action={`/products/delete/${product.id}`}>
+          <button
+            type="submit"
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded uppercase transition-all"
+          >Eliminar</button>
+        </Form>
       </div>
     </td>
 </tr> 

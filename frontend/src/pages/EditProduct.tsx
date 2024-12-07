@@ -6,11 +6,9 @@ import { Form, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export async function loader({ params }: ActionFunctionArgs) {
-  const id = Number(params.id)
-  const product = await getProductById(id)
-  // console.log(product);
-
-  return product
+  if (params.id !== undefined) {
+    return await getProductById(Number(params.id))
+  }
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -30,15 +28,15 @@ export async function action({ request, params }: ActionFunctionArgs) {
   return redirect("/")
 }
 
+const availabilityOptions = [
+  { name: 'Disponible', value: true },
+  { name: 'No Disponible', value: false }
+]
+
 export default function NewProduct() {
 
   const product: Product = useLoaderData()
   const error = useActionData()
-  const isAvailable = product.availability ? "Disponible" : "No disponible"
-  const availabilityOptions = [
-    { name: 'Disponible', value: true },
-    { name: 'No Disponible', value: false }
-  ]
 
   return (
     <>
@@ -85,8 +83,6 @@ export default function NewProduct() {
             defaultValue={product.price}
           />
         </div>
-
-
 
         <div className="mb-4">
           <label

@@ -6,7 +6,7 @@ type ProductData = {
   [k: string]: FormDataEntryValue;
 }
 
-const env = import.meta.env.VITE_BACKEND_URL
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 export async function addProduct(data: ProductData) {
   try {
@@ -16,7 +16,7 @@ export async function addProduct(data: ProductData) {
     });
 
     if (result.success) {
-      const url = `${env}/api/products`;
+      const url = `${backendUrl}/api/products`;
       await axios.post(url, {
         name: result.output.name,
         price: result.output.price
@@ -35,7 +35,7 @@ export async function addProduct(data: ProductData) {
 
 export async function getAllProducts() {
   try {
-    const url = `${env}/api/products`;
+    const url = `${backendUrl}/api/products`;
     const { data } = await axios(url)
     const result = safeParse(ProductsSchema, data.data); // es data es un array de objetos
     if (result.success) {
@@ -49,7 +49,7 @@ export async function getAllProducts() {
 
 export async function getProductById(id: Product["id"]) {
   try {
-    const url = `${env}/api/products/${id}`;
+    const url = `${backendUrl}/api/products/${id}`;
     const { data } = await axios(url)
     // console.log(data);
     
@@ -65,14 +65,10 @@ export async function getProductById(id: Product["id"]) {
 
 export async function updateProductById(id: Product["id"], formData: ProductData) {
   try {
-    const url = `${env}/api/products/${id}`;
-    const { data } = await axios.put(url, formData)
+
+    const url = `${backendUrl}/api/products/${id}`;
+    await axios.put(url, formData)
     // console.log(data);
-    
-    const result = safeParse(ProductSchema, data.data); // es data es un array de objetos
-    if (result.success) {
-      return result.output
-    }
 
   } catch (error) {
     console.log(error);
@@ -81,8 +77,18 @@ export async function updateProductById(id: Product["id"], formData: ProductData
 
 export async function updateAvailability(id: Product["id"]) {
   try {
-    const url = `${env}/api/products/${id}`;
+    const url = `${backendUrl}/api/products/${id}`;
     await axios.patch(url)
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deletProductById(id: Product["id"]) {
+  try {
+    const url = `${backendUrl}/api/products/${id}`;
+    await axios.delete(url)
 
   } catch (error) {
     console.log(error);

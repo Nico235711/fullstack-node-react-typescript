@@ -5,7 +5,9 @@ import { Link, useLoaderData } from "react-router-dom";
 
 export async function loader() {
   const products = await getAllProducts()
-  return products && products
+  if (products) {
+    return products
+  }
 }
 
 export default function Products() {
