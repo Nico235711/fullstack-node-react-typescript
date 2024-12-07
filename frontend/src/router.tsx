@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import NewProduct, { action as newProductAction } from "./pages/NewProduct";
-import Products, { loader as produtsLoader } from "./pages/Products";
+import Products, { loader as produtsLoader, action as updateAvailabityAction } from "./pages/Products";
 import EditProduct, { loader as editProductLoader, action as editProductAction } from "./pages/EditProduct";
 import { action as deleteProductAction } from "./components/ProductDetails";
+import Spinner from "./components/Spinner";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,9 @@ export const router = createBrowserRouter([
       {
         index: true, // el index es el path "/"
         element: <Products />,
-        loader: produtsLoader
+        loader: produtsLoader,
+        action: updateAvailabityAction,
+        hydrateFallbackElement: <Spinner />,
       },
       {
         path: "products/new",
@@ -24,7 +27,7 @@ export const router = createBrowserRouter([
         path: "products/edit/:id",
         element: <EditProduct />,
         loader: editProductLoader,
-        action: editProductAction
+        action: editProductAction,
       },
       {
         path: "products/delete/:id",
